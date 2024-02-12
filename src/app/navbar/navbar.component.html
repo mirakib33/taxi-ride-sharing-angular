@@ -1,0 +1,33 @@
+<nav class="navbar bg-primary navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">TAXI RIDE SHARING</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" *ngIf="isLoggedIn()" routerLink="/login">Profile</a>
+          </li>
+          <li class="nav-item">
+            <button type="button" class="btn btn-primary">
+              Notifications <span class="badge text-bg-secondary">4</span>
+            </button>
+          </li>
+          <li class="nav-item">
+            <button type="button" class="btn btn-primary">
+              Ride Request <span class="badge text-bg-secondary">4</span>
+            </button>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <button class="btn btn-outline-dark" type="submit" routerLink="/availableDrivers">Search Driver</button>
+        </form>
+        <button class="btn btn-outline-dark mx-2" type="submit" *ngIf="!isLoggedIn()" routerLink="/login">Login</button>
+        <button class="btn btn-outline-dark mx-2" type="submit" *ngIf="isLoggedIn()" (click)="logout()">Logout</button>
+      </div>
+    </div>
+  </nav>

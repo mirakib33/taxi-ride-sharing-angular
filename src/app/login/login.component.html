@@ -1,1 +1,32 @@
-<p>login works!</p>
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="card shadow-lg" style="max-width: 400px;">
+      <div class="card-body">
+        <h2 class="text-center mb-4">Login</h2>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="form-group mb-3">
+            <label for="email" class="col-form-label">Email address</label>
+            <input type="email" formControlName="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email" required>
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          </div>
+          <div class="form-group mb-3">
+            <label for="role" class="col-form-label">Role</label><br>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" formControlName="userType" name="userType" id="passenger-radio" value="Passenger" checked>
+              <label class="form-check-label" for="passenger-radio">Passenger</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" formControlName="userType" name="userType" id="driver-radio" value="Driver">
+              <label class="form-check-label" for="driver-radio">Driver</label>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block" id="login-button">Log in</button>
+        </form>
+        <div class="text-center mt-3">
+          <a href="#">Forgot password?</a>
+        </div>
+        <div class="text-center mt-3">
+          Don't have an account? <a href="#">Register</a>
+        </div>
+      </div>
+    </div>
+  </div>

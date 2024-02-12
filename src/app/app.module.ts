@@ -7,6 +7,9 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { AvailableDriversComponent } from './available-drivers/available-drivers.component';
 import { RideRequestsComponent } from './ride-requests/ride-requests.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -14,11 +17,14 @@ import { RideRequestsComponent } from './ride-requests/ride-requests.component';
     LoginComponent,
     HomeComponent,
     AvailableDriversComponent,
-    RideRequestsComponent
+    RideRequestsComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
