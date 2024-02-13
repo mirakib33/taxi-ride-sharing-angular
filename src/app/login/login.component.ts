@@ -20,7 +20,7 @@ export class LoginComponent {
     ) {
     this.loginForm = this.fb.group({
       email: ['', Validators.required],
-      userType: ['passenger', Validators.required]
+      userType: ['', Validators.required]
     });
   }
 

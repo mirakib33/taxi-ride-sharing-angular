@@ -7,7 +7,7 @@ import { Observable, catchError } from 'rxjs';
 })
 export class AvailableDriverService {
 
-  private baseUrl = 'http://localhost:8083/passenger-service/api/passenger';
+  private baseUrl = 'http://localhost:8080/passenger-service/api/passenger';
 
   constructor(private http: HttpClient) {}
 
@@ -22,8 +22,8 @@ export class AvailableDriverService {
     return Promise.reject(error.message || error);
   }
 
-  getAvailableDrivers(availableFrom: String, type: String): Observable<any> {
-    return this.http.get(this.baseUrl + '/availableDrivers?availableFrom=' + availableFrom + '&type=' + type, this.httpOptions).pipe(
+  getAvailableDrivers(params: any): Observable<any> {
+    return this.http.get(this.baseUrl + '/availableDrivers', {params}).pipe(
       catchError(this.handleError)
     );
   }
