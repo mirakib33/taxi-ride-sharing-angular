@@ -8,6 +8,14 @@ import { Component, OnInit } from '@angular/core';
 export class AvailableDriversComponent implements OnInit{
 
   userLocation: any;
+  drivers!: any;
+  fare: any;
+
+  constructor(
+    private AvailableDriverService availableDriverService,
+  ) {
+
+  }
 
   ngOnInit() {
     // if (navigator.geolocation) {
@@ -28,8 +36,46 @@ export class AvailableDriversComponent implements OnInit{
     // }
   }
 
-  searchDrivers() {}
+  searchDrivers(availableFrom: String, type: String) {
+    this.availableDriverService.getAvailableDrivers(availableFrom: String, type: String).subscribe(response => {
+      let drivers = response;
+    },
+    error => {
+      console.error('Login error:', error); 
+    }
+  );
+} else {
+console.error('Invalid form data');
+}
+  }
 
+
+  getFare(destination: String) {
+    this.availableDriverService.getAvailableDrivers(destination: String).subscribe(response => {
+      let fare = response;
+    },
+    error => {
+      console.error('Error getting fare:', error); 
+    }
+  );
+} else {
+console.error('Invalid form data');
+}
+  }
+
+
+  rideRequest(passengerId: String, driverId: String) {
+    this.availableDriverService.getAvailableDrivers(passengerId: String, driverId: String).subscribe(response => {
+      let message = response;
+    },
+    error => {
+      console.error('Error ride request:', error); 
+    }
+  );
+} else {
+console.error('Invalid form data');
+}
+  }
 
 
 }

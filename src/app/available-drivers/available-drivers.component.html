@@ -1,20 +1,22 @@
 <app-navbar></app-navbar>
 
 <div class="container mt-5">
-    <form (ngSubmit)="searchDrivers()">
+    <form [formGroup]="availableDrivers" (ngSubmit)="searchDrivers(availableFrom, type)">
       <div class="row align-items-center mb-3">
         <div class="col-md-6">
           <div class="form-group">
-            <label for="searchLocation">Pick-up Location (Optional)</label>
-            <select class="form-control" id="searchLocation">
-              <option ></option>
+            <label for="vehicleType">Vehicle Type</label>
+            <select class="form-control" id="vehicleType" formControlName="type">
+              <option value="Small">Small (2 Seats)</option>
+              <option value="Medium">Medium (4 Seats)</option>
+              <option value="Large">Large (6 Seats)</option>
             </select>
           </div>
         </div>
         <div class="col-md-6">
           <div class="form-group">
-            <label for="searchCriteria">Search by Driver Name or Vehicle</label>
-            <input type="text" class="form-control" id="searchCriteria" >
+            <label for="searchCriteria">Pick up location</label>
+            <input type="text" formControlName="availableFrom" class="form-control" id="searchCriteria" >
           </div>
         </div>
       </div>
