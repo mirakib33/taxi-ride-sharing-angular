@@ -10,6 +10,7 @@ import { RideRequestsComponent } from './ride-requests/ride-requests.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { DriverDetailsComponent } from './driver-details/driver-details.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
     HomeComponent,
     AvailableDriversComponent,
     RideRequestsComponent,
-    NavbarComponent
+    NavbarComponent,
+    DriverDetailsComponent
   ],
   imports: [
     BrowserModule,

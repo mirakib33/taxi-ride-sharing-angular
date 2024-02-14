@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { AvailableDriversComponent } from './available-drivers/available-drivers.component';
+import { DriverDetailsComponent } from './driver-details/driver-details.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,10 @@ const routes: Routes = [
   {
     path : "availableDrivers",
     component : AvailableDriversComponent
+  },
+  {
+    path : "driverDetails/:driverId",
+    component : DriverDetailsComponent
   },
 ];
 

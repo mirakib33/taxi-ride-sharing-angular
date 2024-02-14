@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AvailableDriverService } from '../services/availavle-driver.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DriverService } from '../services/driver.service';
 
 @Component({
   selector: 'app-available-drivers',
@@ -21,10 +22,12 @@ export class AvailableDriversComponent implements OnInit{
   userInfo: any;
   rideMessage: any;
   passengerId: any;
+  driverDetails: any;
 
   constructor(
     private fb: FormBuilder,
     private availableDriverService: AvailableDriverService,
+    private driverService: DriverService,
   ) {
     this.availableDrivers = this.fb.group({
       availableFrom: ['', Validators.required],
@@ -101,7 +104,13 @@ export class AvailableDriversComponent implements OnInit{
 
 
   getDriverDetails(driverId:String) {
-
+    this.driverService.getDriverById(driverId).subscribe(response => {
+      this.driverDetails = response;
+      },
+      error => {
+        console.error('Error ride request:', error); 
+      }
+    );
   }
 
 

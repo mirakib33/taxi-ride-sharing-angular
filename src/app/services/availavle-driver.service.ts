@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, catchError } from 'rxjs';
 
 @Injectable({
@@ -28,8 +28,9 @@ export class AvailableDriverService {
     );
   }
 
-  getFare( destination: String): Observable<any> {
-    return this.http.get(this.baseUrl + '/fare?destination=' + destination, this.httpOptions).pipe(
+  getFare( destination: string): Observable<any> {
+    let params = new HttpParams().set('destination', destination);
+    return this.http.get(this.baseUrl + '/fare', {params}).pipe(
       catchError(this.handleError)
     );
   }
