@@ -11,6 +11,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { DriverDetailsComponent } from './driver-details/driver-details.component';
+import { RideRequestListComponent } from './ride-request-list/ride-request-list.component';
+import { RideListComponent } from './ride-list/ride-list.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { DriverDetailsComponent } from './driver-details/driver-details.componen
     AvailableDriversComponent,
     RideRequestsComponent,
     NavbarComponent,
-    DriverDetailsComponent
+    DriverDetailsComponent,
+    RideRequestListComponent,
+    RideListComponent
   ],
   imports: [
     BrowserModule,

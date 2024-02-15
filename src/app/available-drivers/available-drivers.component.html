@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 
-<div class="container mt-5">
+<div class="container mt-5" *ngIf="search">
     <form [formGroup]="availableDrivers" (ngSubmit)="searchDrivers()">
       <div class="row align-items-center mb-3">
         <div class="col-md-6">
@@ -57,11 +57,43 @@
           <td>{{driver.name}}</td>
           <td>{{driver.phone}}</td>
           <td>
-            <button class="btn btn-primary" (click)="storeDriverId(driver.id)" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Request</button>
+            <button class="btn btn-primary" (click)="storeDriverId(driver.driverId)" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Request</button>
           </td>
           <td>
-            <button class="btn btn-primary" (click)="getDriverDetails(driver.id)">View</button>
+            <button class="btn btn-primary" (click)="getDriverDetails(driver.driverId)" data-bs-target="#viewDriverDetails" data-bs-toggle="modal">View</button>
           </td>
+
+          <!-- Modal Start -->
+
+          <td>
+            <div class="modal fade" id="viewDriverDetails" tabindex="-1">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">Driver Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <ul *ngIf="modal" class="list-group">
+                      <li class="list-group-item">Name: {{driverDetails.name}}</li>
+                      <li class="list-group-item">Phone: {{driverDetails.name}}</li>
+                      <li class="list-group-item">Phone: {{driverDetails.name}}</li>
+                      <li class="list-group-item">Phone: {{driverDetails.name}}</li>
+                      <li class="list-group-item">Phone: {{driverDetails.name}}</li>
+                    </ul>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button *ngIf="ride.status=='Requested'" type="button" class="btn btn-info" (click)="cancel(ride.rideId)">Cancel</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+
+           <!-- Modal End -->
+
+
         </tr>
       </tbody>
     </table>

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, catchError } from 'rxjs';
+import { RideRequest } from '../models/ride-request.model';
 
 @Injectable({
   providedIn: 'root'
@@ -35,8 +36,8 @@ export class AvailableDriverService {
     );
   }
 
-  rideRequest(passengerId: String, driverId: String): Observable<any> {
-    return this.http.get(this.baseUrl + '/rideRequest?passengerId=' + passengerId + '&driverId=' + driverId, this.httpOptions).pipe(
+  rideRequest(rideRequest: RideRequest): Observable<any> {
+    return this.http.post(this.baseUrl + '/rideRequest', rideRequest, { responseType: 'text' }).pipe(
       catchError(this.handleError)
     );
   }

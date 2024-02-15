@@ -1,0 +1,93 @@
+<app-navbar></app-navbar>
+
+<div *ngIf="message" class="mt-5">
+  <h1 class="text-center">No ride request available</h1>
+</div>
+
+
+<div class="container mt-5" *ngIf="table">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Pick up location</th>
+          <th scope="col">destination</th>
+          <th scope="col">Action</th>
+          <th scope="col">View</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ride of rides; let i = index">
+          <th scope="row">{{i+1}}</th>
+          <td>{{ride.startFrom}}</td>
+          <td>{{ride.destination}}</td>
+          <td>
+            <button *ngIf="ride.status=='Requested' || ride.status=='End' || ride.status=='Paid'" class="btn btn-primary" (click)="accept(ride.rideId)" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Accept</button>
+            <button *ngIf="ride.status=='Accepted'" class="btn btn-primary mx-2" (click)="cancel(ride.rideId)" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Cancel</button>
+            <button *ngIf="ride.status=='Accepted'" class="btn btn-primary" (click)="start(ride.rideId)" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Start</button>
+            <button *ngIf="ride.status=='Running'" class="btn btn-primary" (click)="end(ride.rideId)" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">End</button>
+          </td>
+          <td>
+            <button class="btn btn-primary" (click)="getPassengerDetails(ride.passengerId)" data-bs-target="#viewPassengerDetails" data-bs-toggle="modal">View</button>
+          </td>
+
+
+          <!-- Modal Start -->
+
+          <td>
+            <div class="modal fade" id="viewPassengerDetails" tabindex="-1">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">Passenger Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <ul *ngIf="modal" class="list-group">
+                      <li class="list-group-item">Name: {{passenger.name}}</li>
+                      <li class="list-group-item">Phone: {{passenger.phone}}</li>
+                    </ul>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button *ngIf="ride.status=='Requested' || ride.status=='End' || ride.status=='Paid'" type="button" class="btn btn-primary" (click)="accept(ride.rideId)">Accept</button>
+                    <button *ngIf="ride.status=='Accepted'" type="button" class="btn btn-info" (click)="cancel(ride.rideId)">Cancel</button>
+                    <button *ngIf="ride.status=='Accepted'" type="button" class="btn btn-info" (click)="start(ride.rideId)">Start</button>
+                    <button *ngIf="ride.status=='Running'" type="button" class="btn btn-info" (click)="end(ride.rideId)">End</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+
+           <!-- Modal End -->
+
+        </tr>
+      </tbody>
+    </table>
+</div>
+
+
+
+
+
+<!-- <div class="modal fade" id="viewPassengerDetails" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Passenger Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <ul *ngIf="modal" class="list-group">
+          <li class="list-group-item">Name: {{passenger.name}}</li>
+          <li class="list-group-item">Phone: {{passenger.phone}}</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="accept(ride.rideId)">Accept</button>
+      </div>
+    </div>
+  </div>
+</div> -->

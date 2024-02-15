@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable, catchError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,12 @@ export class PassengerService {
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
     return Promise.reject(error.message || error);
+  }
+
+  getPassengerById( passengerId: String): Observable<any> {
+    return this.http.get(this.baseUrl + '/details/' + passengerId, this.httpOptions).pipe(
+      catchError(this.handleError)
+    );
   }
 
 }

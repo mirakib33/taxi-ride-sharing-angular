@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { AvailableDriversComponent } from './available-drivers/available-drivers.component';
 import { DriverDetailsComponent } from './driver-details/driver-details.component';
+import { RideRequestListComponent } from './ride-request-list/ride-request-list.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,13 @@ const routes: Routes = [
     path : "driverDetails/:driverId",
     component : DriverDetailsComponent
   },
+  {
+    path : "rides",
+    component : RideRequestListComponent
+  },
+
+
+
 ];
 
 @NgModule({

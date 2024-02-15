@@ -1,0 +1,21 @@
+<app-navbar></app-navbar>
+
+  <div *ngIf="ride.status == 'End'">
+    <h1 class="text-center">Please Pay the Ride Bill.</h1>
+  </div>
+
+<div *ngIf="currentRide">
+    <ul class="list-group">
+      <li class="list-group-item">Driver Name: {{driver.name}}</li>
+      <li class="list-group-item">Driver Name: {{driver.phone}}</li>
+      <li class="list-group-item">Start From: {{ride.srartFrom}}</li>
+      <li class="list-group-item">Destination: {{ride.destination}}</li>
+      <li class="list-group-item">Started on: {{ride.startedOn}}</li>
+      <li class="list-group-item">Status: {{ride.status}}</li>
+      <li class="list-group-item">Fare: {{ride.fare}}</li>
+    </ul>
+  </div>
+
+  <div *ngIf="message">
+    <h1 class="text-center">You don't have any current ride.</h1>
+  </div>
