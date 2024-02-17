@@ -1,21 +1,116 @@
 <app-navbar></app-navbar>
 
-  <div *ngIf="ride.status == 'End'">
+<div class="my-5" *ngIf="message">
+  <h1 class="text-center">You don't have any current ride.</h1>
+</div>
+
+  <div *ngIf="ride.status == 'End'" class="my-5">
     <h1 class="text-center">Please Pay the Ride Bill.</h1>
   </div>
 
-<div *ngIf="currentRide">
+<div *ngIf="currentRide" class="mt-5">
     <ul class="list-group">
-      <li class="list-group-item">Driver Name: {{driver.name}}</li>
-      <li class="list-group-item">Driver Name: {{driver.phone}}</li>
-      <li class="list-group-item">Start From: {{ride.srartFrom}}</li>
-      <li class="list-group-item">Destination: {{ride.destination}}</li>
-      <li class="list-group-item">Started on: {{ride.startedOn}}</li>
-      <li class="list-group-item">Status: {{ride.status}}</li>
-      <li class="list-group-item">Fare: {{ride.fare}}</li>
+      <li class="list-group-item text-center">Driver Name: {{driver.name}}</li>
+      <li class="list-group-item text-center">Driver Phone: {{driver.phone}}</li>
+      <li class="list-group-item text-center">Start From: {{ride.startFrom}}</li>
+      <li class="list-group-item text-center">Destination: {{ride.destination}}</li>
+      <li class="list-group-item text-center">Started on: {{ride.startTime}}</li>
+      <li class="list-group-item text-center">Ended on: {{ride.endTime}}</li>
+      <li class="list-group-item text-center">Status: {{ride.status}}</li>
+      <li class="list-group-item text-center">Fare: {{ride.fare}}</li>
     </ul>
   </div>
 
-  <div *ngIf="message">
-    <h1 class="text-center">You don't have any current ride.</h1>
+  <div class="d-flex justify-content-center mt-5">
+    <button *ngIf="ride.status=='Requested'" class="btn btn-primary mx-2" (click)="cancel(ride.rideId)">Cancel</button>
+  </div>
+
+  <div *ngIf="ride.status == 'End'" class="d-flex justify-content-center m-5">
+    <button class="btn btn-primary mx-2" data-bs-target="#payOnCash" data-bs-toggle="modal">Pay on cash</button>
+    <button class="btn btn-info mx-2">Pay on card</button>
+    <button class="btn btn-success mx-2" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Pay on mobile banking</button>
+  </div>
+
+
+  <!-- Pay on mobile banking modal -->
+
+  <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Pay Bill by Mobile Banking</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+          <div class="modal-body">
+            <label for="destination">Input phone number:</label>
+            <input type="text" [(ngModel)]="phone" class="form-control" id="destination" >
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" data-bs-target="#otp" data-bs-toggle="modal" (click)="getPhone(phone)">Send OTP</button>
+          </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- OTP modal -->
+
+  <div class="modal fade" id="otp" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalToggleLabel">OTP</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+          <div class="modal-body">
+            <label for="destination">Input OTP:</label>
+            <input type="text" class="form-control" id="destination" >
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" data-bs-target="#check" data-bs-toggle="modal">Check</button>
+          </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- OTP modal -->
+
+  <div class="modal fade" id="check" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Bill Pay on Mobile Banking</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+          <div class="modal-body">
+            <p>You are going to pay <span class="text-success">{{ride.fare}}</span> Taka only.</p>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" (click)="payOnMobile()">Pay</button>
+          </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Pay on cash modal -->
+
+  <div class="modal fade" id="payOnCash" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Pay Bill on Cash</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+          <div class="modal-body">
+            <p for="destination">Are you sure to pay on cash?</p>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" data-bs-dismiss="modal" (click)="payOnCash()">Pay</button>
+          </div>
+      </div>
+    </div>
   </div>

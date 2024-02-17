@@ -23,32 +23,11 @@ export class LoginServiceService {
     return Promise.reject(error.message || error);
   }
 
-  // GET request
-  // get(endpoint: string): Observable<any> {
-  //   return this.http.get(`${this.baseUrl}/${endpoint}`).pipe(
-  //     catchError(this.handleError)
-  //   );
-  // }
-
   // POST request
   login(login: Login): Observable<any> {
     return this.http.post(this.baseUrl + '/login', JSON.stringify(login), this.httpOptions).pipe(
       catchError(this.handleError)
     );
   }
-
-  // PUT request
-  // put(endpoint: string, data: any): Observable<any> {
-  //   return this.http.put(`${this.baseUrl}/${endpoint}`, data).pipe(
-  //     catchError(this.handleError)
-  //   );
-  // }
-
-  // DELETE request
-  // delete(endpoint: string): Observable<any> {
-  //   return this.http.delete(`${this.baseUrl}/${endpoint}`).pipe(
-  //     catchError(this.handleError)
-  //   );
-  // }
 
 }

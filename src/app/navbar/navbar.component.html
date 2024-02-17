@@ -10,21 +10,21 @@
             <a class="nav-link active" aria-current="page" routerLink="/home">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" *ngIf="isLoggedIn()" routerLink="/login">Profile</a>
+            <a class="nav-link" *ngIf="isLoggedIn() && isDriver()" routerLink="/driver-details">Profile</a>
           </li>
-          <li class="nav-item">
-            <button type="button" class="btn btn-primary">
-              Notifications <span class="badge text-bg-secondary">4</span>
+          <li class="nav-item" *ngIf="isLoggedIn() && isPassenger()">
+            <button type="button" class="btn btn-primary" routerLink="/ride-list">
+              Ride 
             </button>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" *ngIf="isLoggedIn() && isDriver()">
             <button type="button" class="btn btn-primary" routerLink="/rides">
-              Ride Request <span class="badge text-bg-secondary">4</span>
+              Ride Request
             </button>
           </li>
         </ul>
         <form class="d-flex" role="search">
-          <button class="btn btn-outline-dark" type="submit" routerLink="/availableDrivers">Search Driver</button>
+          <button class="btn btn-outline-dark" *ngIf="isLoggedIn() && isPassenger()" type="submit" routerLink="/availableDrivers">Search Driver</button>
         </form>
         <button class="btn btn-outline-dark mx-2" type="submit" *ngIf="!isLoggedIn()" routerLink="/login">Login</button>
         <button class="btn btn-outline-dark mx-2" type="submit" *ngIf="isLoggedIn()" (click)="logout()">Logout</button>

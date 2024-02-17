@@ -5,9 +5,9 @@ import { Observable, catchError } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class DriverService {
+export class BillingService {
 
-  private baseUrl = 'http://localhost:8081/driver-service/api/driver';
+  private baseUrl = 'http://localhost:8082/billing-service/api/billing';
 
   constructor(private http: HttpClient) {}
 
@@ -22,16 +22,12 @@ export class DriverService {
     return Promise.reject(error.message || error);
   }
 
-  getDriverById( driverId: String): Observable<any> {
-    return this.http.get(this.baseUrl + '/' + driverId, this.httpOptions).pipe(
+  // POST request
+  payOnCash(body: any): Observable<any> {
+    return this.http.post(this.baseUrl + '/pay', body).pipe(
       catchError(this.handleError)
     );
   }
 
-  updateDriverStatus(driverId:string, body: any): Observable<any> {
-    return this.http.put(this.baseUrl + '/update/status/' + driverId, body, this.httpOptions).pipe(
-      catchError(this.handleError)
-    );
-  }
 
 }

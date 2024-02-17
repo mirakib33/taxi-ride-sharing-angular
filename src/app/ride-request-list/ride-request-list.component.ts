@@ -86,7 +86,8 @@ export class RideRequestListComponent implements OnInit{
       status: "Cancelled"
     }
     this.rideRequestListService.updateStatusById(rideId, body).subscribe(response => {
-      alert("Ride Accepted Successfully!");
+      alert("Ride Cancelled Successfully!");
+      this.ngOnInit();
       },
       error => {
         console.error('Error ride request:', error); 
@@ -99,7 +100,8 @@ export class RideRequestListComponent implements OnInit{
       status: "Running"
     }
     this.rideRequestListService.updateStatusById(rideId, body).subscribe(response => {
-      alert("Ride Accepted Successfully!")
+      alert("Ride Started Successfully!")
+      this.ngOnInit();
       },
       error => {
         console.error('Error ride request:', error); 
@@ -112,7 +114,8 @@ export class RideRequestListComponent implements OnInit{
       status: "End"
     }
     this.rideRequestListService.updateStatusById(rideId, body).subscribe(response => {
-      alert("Ride Accepted Successfully!")
+      alert("Ride Ended Successfully!")
+      this.ngOnInit();
       },
       error => {
         console.error('Error ride request:', error); 

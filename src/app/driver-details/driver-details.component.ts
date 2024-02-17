@@ -20,7 +20,7 @@ export class DriverDetailsComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.driverId = this.route.snapshot.params['driverId'];
+    this.driverId  = JSON.parse(localStorage.getItem('session') || '{}').driverId;
 
     this.getDriverDetails(this.driverId);
 
@@ -31,6 +31,34 @@ export class DriverDetailsComponent implements OnInit{
     this.driverService.getDriverById(driverId).subscribe(response => {
       this.driverDetails = response;
       this.router.navigateByUrl('/driverDetails/'+ driverId);
+      },
+      error => {
+        console.error('Error ride request:', error); 
+      }
+    );
+  }
+
+  active(driverId:string) {
+    let params = {
+      status: true
+    }
+    this.driverService.updateDriverStatus(driverId, params).subscribe(response => {
+      this.ngOnInit();
+      alert("You are now active for ride.");
+      },
+      error => {
+        console.error('Error ride request:', error); 
+      }
+    );
+  }
+
+  inActive(driverId:string) {
+    let body = {
+      status: false
+    }
+    this.driverService.updateDriverStatus(driverId, body).subscribe(response => {
+      this.ngOnInit();
+      alert("You are now Inactive for ride.");
       },
       error => {
         console.error('Error ride request:', error); 

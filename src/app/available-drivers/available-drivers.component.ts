@@ -93,7 +93,7 @@ export class AvailableDriversComponent implements OnInit{
 
   getFare(destination: string) {
     this.availableDriverService.getFare(destination).subscribe(response => {
-      this.fare = response;
+      this.fare = Math.round(response);
       },
       error => {
         console.error('Error getting fare:', error); 
@@ -121,7 +121,6 @@ export class AvailableDriversComponent implements OnInit{
   getDriverDetails(driverId:string) {
     this.driverService.getDriverById(driverId).subscribe(response => {
       this.driverDetails = response;
-      this.modal = true;
       },
       error => {
         console.error('Error ride request:', error); 

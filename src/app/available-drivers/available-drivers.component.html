@@ -1,5 +1,10 @@
 <app-navbar></app-navbar>
 
+
+<div *ngIf="!search" class="mt-5">
+  <h1 class="text-center">You have already requested a driver. Please <span routerLink="/ride-list" routerLinkActive="green-underline">click here</span>.</h1>
+</div>
+
 <div class="container mt-5" *ngIf="search">
     <form [formGroup]="availableDrivers" (ngSubmit)="searchDrivers()">
       <div class="row align-items-center mb-3">
@@ -35,7 +40,7 @@
     </div> -->
   </div>
 
-  <div *ngIf="message">
+  <div *ngIf="message" class="mt-5">
     <h1 class="text-center">No driver available</h1>
   </div>
 
@@ -74,12 +79,11 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                    <ul *ngIf="modal" class="list-group">
+                    <ul class="list-group">
                       <li class="list-group-item">Name: {{driverDetails.name}}</li>
-                      <li class="list-group-item">Phone: {{driverDetails.name}}</li>
-                      <li class="list-group-item">Phone: {{driverDetails.name}}</li>
-                      <li class="list-group-item">Phone: {{driverDetails.name}}</li>
-                      <li class="list-group-item">Phone: {{driverDetails.name}}</li>
+                      <li class="list-group-item">Phone: {{driverDetails.phone}}</li>
+                      <li class="list-group-item">Available From: {{driverDetails.availableFrom}}</li>
+                      <li class="list-group-item">Vehicle Type: {{driverDetails.vehicleType}}</li>
                     </ul>
                   </div>
                   <div class="modal-footer">
@@ -131,7 +135,7 @@
         The fare would be: {{ fare }} Taka Only
       </div>
       <div class="modal-footer">
-        <button class="btn btn-primary" (click)="rideRequest()">Send Request</button>
+        <button class="btn btn-primary" data-bs-dismiss="modal" (click)="rideRequest()">Send Request</button>
       </div>
     </div>
   </div>
